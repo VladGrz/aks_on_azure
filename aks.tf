@@ -62,4 +62,8 @@ resource "azurerm_kubernetes_cluster" "machine" {
   depends_on = [
     azurerm_role_assignment.base
   ]
+   provisioner "local-exec" { 
+    command = "az aks get-credentials --overwrite-existing --resource-group ${local.resource_group_name} --name ${local.env}-${local.eks_name}"
+    interpreter = ["/bin/bash", "-c"]
+  }
 }

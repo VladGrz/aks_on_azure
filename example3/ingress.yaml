@@ -15,4 +15,4 @@ spec:
               service:
                 name: echoserver-v1
                 port:
-                  number: 8080
+                  number: 5000

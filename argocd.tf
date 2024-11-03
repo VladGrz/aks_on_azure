@@ -26,3 +26,23 @@ resource "helm_release" "argocd" {
     version = "3.35.4"
     values = [file("values/argocd.yaml")]
 }
+
+resource "helm_release" "argo_rollouts" {
+    name             = "argo-rollouts"
+    repository       = "https://argoproj.github.io/argo-helm"
+    chart            = "argo-rollouts"
+    namespace        = "argo-rollouts"
+    create_namespace = true
+    version          = "2.21.0"
+    values = [file("values/argo_rollouts.yaml")]
+}
+
+resource "helm_release" "external_nginx" {
+  name       = "external"
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  chart      = "ingress-nginx"
+  namespace  = "ingress"
+  create_namespace = true
+
+  values = [file("values/ingress.yaml")]
+}
